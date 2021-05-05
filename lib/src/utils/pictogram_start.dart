@@ -6,7 +6,7 @@ Widget startButton(BuildContext context) {
   String hint_back = 'Back';
   String hint_more = 'More';
   String hint_cancel = 'Cancel';
-  String hint_accept = 'Accept';
+  String hint_accept = 'Ok';
   return Center(
     child: Container(
       alignment: Alignment.center,
