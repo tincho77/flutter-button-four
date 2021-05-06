@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-Widget startButton(BuildContext context) {
-  double widthbutton = 300.0;
-  double heightbutton = 300.0;
+Widget startButton(
+    BuildContext context, double side, String url, String picto_text) {
+  //Buton size
+  double widthbutton = side;
+  double heightbutton = side;
+  double padding_icon = side * .32;
+  double icon_size = side * .0833;
+  //Hint of onPressed button
   String hint_back = 'Back';
   String hint_more = 'More';
   String hint_cancel = 'Cancel';
@@ -18,73 +24,81 @@ Widget startButton(BuildContext context) {
           Container(
             alignment: Alignment.centerLeft,
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(100.0),
+                borderRadius: BorderRadius.circular(side / 3),
                 child: _buildSideButtons(
                     context,
-                    150.0,
-                    65.0,
+                    side / 2,
+                    side * .2166,
                     Icons.arrow_back_ios,
                     Color(0xff00c7fa),
-                    const EdgeInsets.only(right: 90.0),
-                    hint_back)),
+                    EdgeInsets.only(right: padding_icon),
+                    hint_back,
+                    icon_size,
+                    picto_text)),
           ),
           Container(
             alignment: Alignment.centerRight,
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(100.0),
+                borderRadius: BorderRadius.circular(side / 3),
                 child: _buildSideButtons(
                     context,
-                    150.0,
-                    65.0,
+                    side / 2,
+                    side * .2166,
                     Icons.arrow_forward_ios,
                     Color(0xff00c7fa),
-                    const EdgeInsets.only(left: 90.0),
-                    hint_more)),
+                    EdgeInsets.only(left: padding_icon),
+                    hint_more,
+                    icon_size,
+                    picto_text)),
           ),
           Container(
             alignment: Alignment.topCenter,
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(100.0),
+                borderRadius: BorderRadius.circular(side / 3),
                 child: _buildSideButtons(
                     context,
-                    65.0,
-                    150.0,
+                    side * .2166,
+                    side / 2,
                     Icons.close,
                     Color(0xff2a2f3c),
-                    const EdgeInsets.only(bottom: 90.0),
-                    hint_cancel)),
+                    EdgeInsets.only(bottom: padding_icon),
+                    hint_cancel,
+                    icon_size,
+                    picto_text)),
           ),
           Container(
             alignment: Alignment.bottomCenter,
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(100.0),
+                borderRadius: BorderRadius.circular(side / 3),
                 child: _buildSideButtons(
                     context,
-                    65.0,
-                    150.0,
+                    side * .2166,
+                    side / 2,
                     Icons.check,
                     Color(0xff2a2f3c),
-                    const EdgeInsets.only(top: 90.0),
-                    hint_accept)),
+                    EdgeInsets.only(top: padding_icon),
+                    hint_accept,
+                    icon_size,
+                    picto_text)),
           ),
           Center(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(100.0),
+              borderRadius: BorderRadius.circular(side / 3),
               child: Container(
-                width: widthbutton - 100.0,
-                height: heightbutton - 100.0,
+                width: widthbutton * .67,
+                height: heightbutton * .67,
                 color: Color(0xff2a2f3c),
               ),
             ),
           ),
           Center(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(100.0),
+              borderRadius: BorderRadius.circular(side / 3),
               child: Container(
-                height: heightbutton - 135.0,
-                width: widthbutton - 135.0,
+                height: heightbutton * .55,
+                width: widthbutton * .55,
                 color: Colors.white,
-                child: _pictogram(),
+                child: _pictogram(url),
               ),
             ),
           ),
@@ -94,13 +108,12 @@ Widget startButton(BuildContext context) {
   );
 }
 
-Widget _pictogram() {
+Widget _pictogram(String url) {
   return Container(
       child: FadeInImage(
     fit: BoxFit.fitHeight,
     placeholder: AssetImage('assets/loading.gif'),
-    image: NetworkImage(
-        'https://media1.tenor.com/images/3857af50397b6fc1264e0aee413e94f7/tenor.gif'),
+    image: NetworkImage(url),
   ));
 }
 
@@ -111,7 +124,9 @@ Widget _buildSideButtons(
     IconData icon,
     Color coverColor,
     EdgeInsets pad,
-    String hint) {
+    String hint,
+    double icon_size,
+    String picto_text) {
   return Container(
       width: width_data,
       height: height_data,
@@ -128,12 +143,32 @@ Widget _buildSideButtons(
         ),
         onPressed: () {
           print(hint);
+          if (hint.contains('Ok')) {
+            Fluttertoast.showToast(
+                msg: picto_text,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          } else {
+            Fluttertoast.showToast(
+                msg: hint,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
         },
         child: Container(
             padding: pad,
             child: Icon(
               icon,
               color: Colors.white,
+              size: icon_size,
             )),
       ));
 }
