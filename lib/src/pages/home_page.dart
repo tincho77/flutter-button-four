@@ -10,8 +10,8 @@ class HomePage extends StatelessWidget {
       ),
       body: startButton(
           context,
-          270.0,
-          "https://media1.tenor.com/images/c25ecb5622528cd7a10a5fd136e06151/tenor.gif",
+          300.0,
+          "https://media.giphy.com/media/fLmtSgFrEjsNCezlzX/giphy.gif",
           "necesito ir al baño"), //Pictogram Button
     );
   }
