@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">487173507503-ki0m1phbh0l48p2j1a39986duuvuun3v.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">487173507503</string>
+    <string name="google_api_key" translatable="false">AIzaSyA6inPmlbHTgoGSiIXJ6jbxyHMMHE60-G4</string>
+    <string name="google_app_id" translatable="false">1:487173507503:android:0a13419b29db86a84cc75a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyA6inPmlbHTgoGSiIXJ6jbxyHMMHE60-G4</string>
+    <string name="google_storage_bucket" translatable="false">flutter-button-four.appspot.com</string>
+    <string name="project_id" translatable="false">flutter-button-four</string>
+</resources>

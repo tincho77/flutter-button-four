@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+
+//Flutter tts
+FlutterTts flutterTts = FlutterTts();
+double volume = 1.0; //volumen
+double pitch = .5;
+double rate = 1.0;
 
 Widget startButton(
     BuildContext context, double side, String url, String picto_text) {
@@ -144,6 +151,7 @@ Widget _buildSideButtons(
         onPressed: () {
           print(hint);
           if (hint.contains('Ok')) {
+            _speak(picto_text);
             Fluttertoast.showToast(
                 msg: picto_text,
                 toastLength: Toast.LENGTH_SHORT,
@@ -171,4 +179,11 @@ Widget _buildSideButtons(
               size: icon_size,
             )),
       ));
+}
+
+Future _speak(String text) async {
+  await flutterTts.setVolume(volume);
+  //await flutterTts.setSpeechRate(rate);
+  //await flutterTts.setPitch(pitch);
+  await flutterTts.speak(text);
 }
