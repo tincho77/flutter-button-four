@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter_tts/flutter_tts.dart';
-
-//Flutter tts
-FlutterTts flutterTts = FlutterTts();
-double volume = 1.0; //volumen
-double pitch = .5;
-double rate = 1.0;
+import 'package:pictogramiconcreate/src/utils/tts_speak.dart';
 
 Widget startButton(
     BuildContext context, double side, String url, String picto_text) {
   //Buton size
   double widthbutton = side;
   double heightbutton = side;
-  double padding_icon = side * .32;
+  double padding_icon = side * .31;
   double icon_size = side * .0833;
   //Hint of onPressed button
   String hint_back = 'Back';
@@ -38,7 +32,7 @@ Widget startButton(
                     side * .2166,
                     Icons.arrow_back_ios,
                     Color(0xff00c7fa),
-                    EdgeInsets.only(right: padding_icon),
+                    EdgeInsets.only(right: padding_icon, top: 5.0),
                     hint_back,
                     icon_size,
                     picto_text)),
@@ -53,7 +47,7 @@ Widget startButton(
                     side * .2166,
                     Icons.arrow_forward_ios,
                     Color(0xff00c7fa),
-                    EdgeInsets.only(left: padding_icon),
+                    EdgeInsets.only(left: padding_icon, top: 5.0),
                     hint_more,
                     icon_size,
                     picto_text)),
@@ -139,51 +133,57 @@ Widget _buildSideButtons(
       height: height_data,
       color: coverColor,
       child: TextButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.pressed))
-                return Theme.of(context).colorScheme.primary.withOpacity(0.7);
-              return coverColor; // Use the component's default.
-            },
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.resolveWith<Color>(
+              (Set<MaterialState> states) {
+                if (states.contains(MaterialState.pressed))
+                  return Theme.of(context).colorScheme.primary.withOpacity(0.7);
+                return coverColor; // Use the component's default.
+              },
+            ),
           ),
-        ),
-        onPressed: () {
-          print(hint);
-          if (hint.contains('Ok')) {
-            _speak(picto_text);
-            Fluttertoast.showToast(
-                msg: picto_text,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                fontSize: 16.0);
-          } else {
-            Fluttertoast.showToast(
-                msg: hint,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                fontSize: 16.0);
-          }
-        },
-        child: Container(
+          onPressed: () {
+            print(hint);
+            if (hint.contains('Ok')) {
+              speak(picto_text);
+              Fluttertoast.showToast(
+                  msg: picto_text,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+            } else {
+              Fluttertoast.showToast(
+                  msg: hint,
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
+            }
+          },
+          child: Container(
             padding: pad,
-            child: Icon(
+            child: Column(children: <Widget>[
+              FadeInImage(
+                image: AssetImage('assets/Cruz.png'),
+                placeholder: AssetImage('assets/loading.gif'),
+                fadeInDuration: Duration(milliseconds: 200),
+                width: 38,
+                height: 38,
+                fit: BoxFit.scaleDown,
+              ),
+            ]
+
+                /*
+            Icon(
               icon,
               color: Colors.white,
               size: icon_size,
-            )),
-      ));
-}
-
-Future _speak(String text) async {
-  await flutterTts.setVolume(volume);
-  //await flutterTts.setSpeechRate(rate);
-  //await flutterTts.setPitch(pitch);
-  await flutterTts.speak(text);
+            )*/
+                ),
+          )));
 }
