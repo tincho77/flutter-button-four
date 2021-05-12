@@ -30,7 +30,7 @@ Widget startButton(
                     context,
                     side / 2,
                     side * .2166,
-                    Icons.arrow_back_ios,
+                    AssetImage('assets/image_icons/back.png'),
                     Color(0xff00c7fa),
                     EdgeInsets.only(right: padding_icon, top: 5.0),
                     hint_back,
@@ -45,7 +45,7 @@ Widget startButton(
                     context,
                     side / 2,
                     side * .2166,
-                    Icons.arrow_forward_ios,
+                    AssetImage('assets/image_icons/more.png'),
                     Color(0xff00c7fa),
                     EdgeInsets.only(left: padding_icon, top: 5.0),
                     hint_more,
@@ -60,7 +60,7 @@ Widget startButton(
                     context,
                     side * .2166,
                     side / 2,
-                    Icons.close,
+                    AssetImage('assets/image_icons/cancel.png'),
                     Color(0xff2a2f3c),
                     EdgeInsets.only(bottom: padding_icon),
                     hint_cancel,
@@ -75,7 +75,7 @@ Widget startButton(
                     context,
                     side * .2166,
                     side / 2,
-                    Icons.check,
+                    AssetImage('assets/image_icons/ok.png'),
                     Color(0xff2a2f3c),
                     EdgeInsets.only(top: padding_icon),
                     hint_accept,
@@ -113,7 +113,7 @@ Widget _pictogram(String url) {
   return Container(
       child: FadeInImage(
     fit: BoxFit.fitHeight,
-    placeholder: AssetImage('assets/loading.gif'),
+    placeholder: AssetImage('assets/image_anim/loading.gif'),
     image: NetworkImage(url),
   ));
 }
@@ -122,7 +122,7 @@ Widget _buildSideButtons(
     BuildContext context,
     double width_data,
     double height_data,
-    IconData icon,
+    AssetImage icon,
     Color coverColor,
     EdgeInsets pad,
     String hint,
@@ -169,8 +169,8 @@ Widget _buildSideButtons(
             padding: pad,
             child: Column(children: <Widget>[
               FadeInImage(
-                image: AssetImage('assets/Cruz.png'),
-                placeholder: AssetImage('assets/loading.gif'),
+                image: icon,
+                placeholder: icon,
                 fadeInDuration: Duration(milliseconds: 200),
                 width: 38,
                 height: 38,

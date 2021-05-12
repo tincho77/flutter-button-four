@@ -11,8 +11,8 @@ class HomePage extends StatelessWidget {
       body: startButton(
           context,
           300.0,
-          "https://media.tenor.com/images/b68dd86d57892aa1cb046a4971bb1f9f/tenor.gif",
-          "piensa un poco"), //Pictogram Button
+          "https://media1.tenor.com/images/0df0943ab589ffad5906b1c93afd5962/tenor.gif?itemid=4971272",
+          "necesito ir al baño"), //Pictogram Button
     );
   }
 }
