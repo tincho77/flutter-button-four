@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pictogramiconcreate/src/utils/tts_speak.dart';
 
-Widget startButton(
-    BuildContext context, double side, String url, String picto_text) {
+Widget startButton(BuildContext context, double side, String url,
+    String picto_text, Color principalColor, Color secundarioColor) {
   //Buton size
   double widthbutton = side;
   double heightbutton = side;
@@ -14,6 +14,7 @@ Widget startButton(
   String hint_more = 'More';
   String hint_cancel = 'Cancel';
   String hint_accept = 'Ok';
+
   return Center(
     child: Container(
       alignment: Alignment.center,
@@ -31,7 +32,7 @@ Widget startButton(
                     side / 2,
                     side * .2166,
                     AssetImage('assets/image_icons/back.png'),
-                    Color(0xff00c7fa),
+                    principalColor,
                     EdgeInsets.only(right: padding_icon, top: 5.0),
                     hint_back,
                     icon_size,
@@ -46,7 +47,7 @@ Widget startButton(
                     side / 2,
                     side * .2166,
                     AssetImage('assets/image_icons/more.png'),
-                    Color(0xff00c7fa),
+                    principalColor,
                     EdgeInsets.only(left: padding_icon, top: 5.0),
                     hint_more,
                     icon_size,
@@ -61,7 +62,7 @@ Widget startButton(
                     side * .2166,
                     side / 2,
                     AssetImage('assets/image_icons/cancel.png'),
-                    Color(0xff2a2f3c),
+                    secundarioColor,
                     EdgeInsets.only(bottom: padding_icon),
                     hint_cancel,
                     icon_size,
@@ -76,7 +77,7 @@ Widget startButton(
                     side * .2166,
                     side / 2,
                     AssetImage('assets/image_icons/ok.png'),
-                    Color(0xff2a2f3c),
+                    secundarioColor,
                     EdgeInsets.only(top: padding_icon),
                     hint_accept,
                     icon_size,
@@ -88,7 +89,7 @@ Widget startButton(
               child: Container(
                 width: widthbutton * .67,
                 height: heightbutton * .67,
-                color: Color(0xff2a2f3c),
+                color: secundarioColor,
               ),
             ),
           ),

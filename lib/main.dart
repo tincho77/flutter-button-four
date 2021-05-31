@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pictogramiconcreate/src/pages/home_page.dart';
 import 'package:pictogramiconcreate/src/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+
+import 'src/blocs/theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +45,19 @@ class _MyApp extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => ThemeChanger(ThemeData.dark()),
+      child: MaterialAppWithTheme(),
+    );
+  }
+}
+
+class MaterialAppWithTheme extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context);
     return MaterialApp(
+      theme: theme.getTheme(),
       title: 'Pictogram icon create',
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
